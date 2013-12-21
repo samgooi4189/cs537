@@ -1,0 +1,4 @@
+#!/bin/bash
+base=/u/c/s/cs537-2/public/test_scripts/p4
+python $base/run.py $@
+exit $?

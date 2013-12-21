@@ -1,0 +1,16 @@
+Name: Raja Alauddin Raja Abdullah	
+cs login: raja
+
+Name: Liang Zheng Gooi
+cs login: gooi
+
+Methodology
+____________________________________________________________________
+1) Use linked list to organize the order the requests should be handled.
+FIFO - add new request to the end
+SFF - the shortest would be in front of the linked list, short to long
+SFF-BS - group the request based on the sffbs arg, sort the nodes within that group with the same SFF principle
+
+2) Every worker thread/consumer always read from the head of the linked list
+Correct order is already guaranteed above
+

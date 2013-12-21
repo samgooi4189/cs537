@@ -1,0 +1,10 @@
+Name: Raja Alauddin Raja Abdullah	
+cs login: raja
+
+Name: Liang Zheng Gooi
+cs login: gooi
+
+Methodology
+____________________________________________________________________
+1) Builds a client library based on the interface in mfs.h to access the file server
+2) Implements protocol (struct) for the networking layer based on the guidance from NFS pdf

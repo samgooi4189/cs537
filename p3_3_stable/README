@@ -1,0 +1,11 @@
+Name: Raja Alauddin Raja Abdullah	
+cs login: raja
+
+Name: Liang Zheng Gooi
+cs login: gooi
+
+Create a free list to contain a list of free blocks.
+In mem_alloc, use best_fit to allocate block. delete allocated block from the free list, update the size.
+In mem_free, add the freed block to the free list, update size. coalesce the adjacent free block if coalesce flag is 1
+
+Bugs: The code will get into infinite loop when being feed 325 or above.

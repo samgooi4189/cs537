@@ -1,0 +1,128 @@
+
+**********************************************************************
+
+Test build
+build project using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+make: *** No rule to make target `clean'.  Stop.
+test build FAILED
+Trying to build project using make
+make
+gcc -o mem mem.c -Wall
+mem.c: In function ‘Mem_Init’:
+mem.c:32: error: request for member ‘size’ in something not a structure or union
+mem.c:32: error: ‘roundOffRegion’ undeclared (first use in this function)
+mem.c:32: error: (Each undeclared identifier is reported only once
+mem.c:32: error: for each function it appears in.)
+mem.c:33: error: request for member ‘ptr’ in something not a structure or union
+mem.c: In function ‘Mem_Alloc’:
+mem.c:48: error: ‘prevp’ undeclared (first use in this function)
+mem.c:49: warning: assignment from incompatible pointer type
+mem.c:61: error: request for member ‘ptr’ in something not a structure or union
+mem.c:61: error: request for member ‘ptr’ in something not a structure or union
+mem.c:62: error: request for member ‘size’ in something not a structure or union
+mem.c:72: error: request for member ‘size’ in something not a structure or union
+mem.c: At top level:
+mem.c:85: error: static declaration of ‘morecore’ follows non-static declaration
+mem.c:43: note: previous declaration of ‘morecore’ was here
+mem.c: In function ‘morecore’:
+mem.c:86: error: conflicting types for ‘sbrk’
+/usr/include/unistd.h:1053: note: previous declaration of ‘sbrk’ was here
+mem.c:91: error: ‘Header’ undeclared (first use in this function)
+mem.c:97: error: ‘header’ has no member named ‘s’
+mem.c:98: warning: implicit declaration of function ‘free’
+mem.c:98: warning: incompatible implicit declaration of built-in function ‘free’
+mem.c: In function ‘free’:
+mem.c:103: error: ‘Header’ undeclared (first use in this function)
+mem.c:103: error: ‘bp’ undeclared (first use in this function)
+mem.c:103: error: ‘p’ undeclared (first use in this function)
+mem.c:103: warning: left-hand operand of comma expression has no effect
+mem.c:105: error: expected expression before ‘)’ token
+make: *** [p3make] Error 1
+make libmem.so
+make: *** No rule to make target `libmem.so'.  Stop.
+test build FAILED
+test build FAILED
+
+
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ make failed (error 2)
+ required file 'libmem.so' does not exist after make
+
+
+**********************************************************************
+
+Test build
+build project using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+make: *** No rule to make target `clean'.  Stop.
+test build FAILED
+Trying to build project using make
+make
+gcc -o mem mem.c -Wall
+mem.c: In function ‘Mem_Init’:
+mem.c:32: error: request for member ‘size’ in something not a structure or union
+mem.c:32: error: ‘roundOffRegion’ undeclared (first use in this function)
+mem.c:32: error: (Each undeclared identifier is reported only once
+mem.c:32: error: for each function it appears in.)
+mem.c:33: error: request for member ‘ptr’ in something not a structure or union
+mem.c: In function ‘Mem_Alloc’:
+mem.c:48: error: ‘prevp’ undeclared (first use in this function)
+mem.c:49: warning: assignment from incompatible pointer type
+mem.c:61: error: request for member ‘ptr’ in something not a structure or union
+mem.c:61: error: request for member ‘ptr’ in something not a structure or union
+mem.c:62: error: request for member ‘size’ in something not a structure or union
+mem.c:72: error: request for member ‘size’ in something not a structure or union
+mem.c: At top level:
+mem.c:85: error: static declaration of ‘morecore’ follows non-static declaration
+mem.c:43: note: previous declaration of ‘morecore’ was here
+mem.c: In function ‘morecore’:
+mem.c:86: error: conflicting types for ‘sbrk’
+/usr/include/unistd.h:1053: note: previous declaration of ‘sbrk’ was here
+mem.c:91: error: ‘Header’ undeclared (first use in this function)
+mem.c:97: error: ‘header’ has no member named ‘s’
+mem.c:98: warning: implicit declaration of function ‘free’
+mem.c:98: warning: incompatible implicit declaration of built-in function ‘free’
+mem.c: In function ‘free’:
+mem.c:103: error: ‘Header’ undeclared (first use in this function)
+mem.c:103: error: ‘bp’ undeclared (first use in this function)
+mem.c:103: error: ‘p’ undeclared (first use in this function)
+mem.c:103: warning: left-hand operand of comma expression has no effect
+mem.c:105: error: expected expression before ‘)’ token
+make: *** [p3make] Error 1
+make libmem.so
+make: *** No rule to make target `libmem.so'.  Stop.
+test build FAILED
+test build FAILED
+
+
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ make failed (error 2)
+ required file 'libmem.so' does not exist after make
+
+**********************************************************************
+Summary:
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ make failed (error 2)
+ required file 'libmem.so' does not exist after make
+
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ make failed (error 2)
+ required file 'libmem.so' does not exist after make
+
+Passed 0 of 2 tests.
+Overall 0 of 2

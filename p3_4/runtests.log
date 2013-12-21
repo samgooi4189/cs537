@@ -1,0 +1,974 @@
+
+**********************************************************************
+
+Test build
+build project using make
+
+**********************************************************************
+Trying to clean project using make clean
+make clean
+make: *** No rule to make target `clean'.  Stop.
+test build FAILED
+Trying to build project using make
+make
+gcc -g -c -fpic mem.c -Wall -Werror
+gcc -shared -o libmem.so mem.o
+
+
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ file 'libmem.so' exists after make clean, removing
+ file 'mem.o' exists after make clean, removing
+
+
+**********************************************************************
+
+Test init
+call Mem_Init with size = 1 page
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/init
+
+
+test init PASSED
+ (call Mem_Init with size = 1 page)
+
+
+**********************************************************************
+
+Test init2
+init that should be rounded up to 1 page
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/init2
+
+
+test init2 PASSED
+ (init that should be rounded up to 1 page)
+
+
+**********************************************************************
+
+Test alloc
+a simple 8 byte allocation
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/alloc
+
+
+test alloc PASSED
+ (a simple 8 byte allocation)
+
+
+**********************************************************************
+
+Test writeable
+write to a chunk from Mem_Alloc
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/writeable
+
+
+test writeable PASSED
+ (write to a chunk from Mem_Alloc)
+
+
+**********************************************************************
+
+Test free
+a simple allocation followed by a free
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/free
+Freeing: 0x7fff713fd728 
+Cur block: 0x7f0c83a35000 , Prev block: (nil), Next block: (nil), Size: 4040
+
+
+test free PASSED
+ (a simple allocation followed by a free)
+
+
+**********************************************************************
+
+Test align
+check first pointer returned is 8-byte aligned
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/align
+
+
+test align PASSED
+ (check first pointer returned is 8-byte aligned)
+
+
+**********************************************************************
+
+Test alloc2
+a few aligned allocations
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/alloc2
+
+
+test alloc2 PASSED
+ (a few aligned allocations)
+
+
+**********************************************************************
+
+Test alloc3
+many odd sized allocations
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/alloc3
+
+
+test alloc3 PASSED
+ (many odd sized allocations)
+
+
+**********************************************************************
+
+Test free2
+a few aligned allocations and frees
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/free2
+Freeing: 0x7ffff27457e8 
+Cur block: 0x7faaac5f7000 , Prev block: (nil), Next block: (nil), Size: 4000
+Freeing: 0x7ffff27457e8 
+Cur block: 0x7faaac5f7000 , Prev block: (nil), Next block: 0x7faaac5f7fe0, Size: 4000
+Cur block: 0x7faaac5f7fe0 , Prev block: 0x7faaac5f7000, Next block: (nil), Size: 8
+Freeing: 0x7ffff27457e8 
+Cur block: 0x7faaac5f7000 , Prev block: (nil), Next block: 0x7faaac5f7fb8, Size: 3944
+Cur block: 0x7faaac5f7fb8 , Prev block: 0x7faaac5f7000, Next block: (nil), Size: 16
+Freeing: 0x7ffff27457e8 
+Cur block: 0x7faaac5f7000 , Prev block: (nil), Next block: 0x7faaac5f7f80, Size: 3944
+Cur block: 0x7faaac5f7f80 , Prev block: 0x7faaac5f7000, Next block: 0x7faaac5f7fb8, Size: 32
+Cur block: 0x7faaac5f7fb8 , Prev block: 0x7faaac5f7f80, Next block: (nil), Size: 16
+
+
+test free2 PASSED
+ (a few aligned allocations and frees)
+
+
+**********************************************************************
+
+Test free3
+many odd sized allocations and interspersed frees
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/free3
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: (nil), Size: 3936
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2fc0, Size: 3936
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2000, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2fc0, Size: 3936
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2fe0, Size: 3936
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2000, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2fc0, Size: 3832
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2f78, Size: 3752
+Cur block: 0x7fa33ccf2f78 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2fc0, Size: 8
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2f78, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2f78, Size: 3752
+Cur block: 0x7fa33ccf2f78 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2f98, Size: 8
+Cur block: 0x7fa33ccf2f98 , Prev block: 0x7fa33ccf2f78, Next block: 0x7fa33ccf2fc0, Size: 16
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2f98, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2f10, Size: 3752
+Cur block: 0x7fa33ccf2f10 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2f78, Size: 40
+Cur block: 0x7fa33ccf2f78 , Prev block: 0x7fa33ccf2f10, Next block: 0x7fa33ccf2f98, Size: 8
+Cur block: 0x7fa33ccf2f98 , Prev block: 0x7fa33ccf2f78, Next block: 0x7fa33ccf2fc0, Size: 16
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2f98, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+Freeing: 0x7fffb2375cd8 
+Cur block: 0x7fa33ccf2000 , Prev block: (nil), Next block: 0x7fa33ccf2ec0, Size: 3752
+Cur block: 0x7fa33ccf2ec0 , Prev block: 0x7fa33ccf2000, Next block: 0x7fa33ccf2f10, Size: 56
+Cur block: 0x7fa33ccf2f10 , Prev block: 0x7fa33ccf2ec0, Next block: 0x7fa33ccf2f78, Size: 40
+Cur block: 0x7fa33ccf2f78 , Prev block: 0x7fa33ccf2f10, Next block: 0x7fa33ccf2f98, Size: 8
+Cur block: 0x7fa33ccf2f98 , Prev block: 0x7fa33ccf2f78, Next block: 0x7fa33ccf2fc0, Size: 16
+Cur block: 0x7fa33ccf2fc0 , Prev block: 0x7fa33ccf2f98, Next block: 0x7fa33ccf2fe0, Size: 8
+Cur block: 0x7fa33ccf2fe0 , Prev block: 0x7fa33ccf2fc0, Next block: (nil), Size: 8
+
+
+test free3 PASSED
+ (many odd sized allocations and interspersed frees)
+
+
+**********************************************************************
+
+Test align2
+a few allocations checked for alignment
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/align2
+
+
+test align2 PASSED
+ (a few allocations checked for alignment)
+
+
+**********************************************************************
+
+Test align3
+many odd sized allocations checked for alignment
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/align3
+
+
+test align3 PASSED
+ (many odd sized allocations checked for alignment)
+
+
+**********************************************************************
+
+Test nospace
+second allocation is too big to fit
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/nospace
+
+
+test nospace PASSED
+ (second allocation is too big to fit)
+
+
+**********************************************************************
+
+Test badinit
+bad arguments to Mem_Init
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/badinit
+
+
+test badinit PASSED
+ (bad arguments to Mem_Init)
+
+
+**********************************************************************
+
+Test badinit2
+bad arguments to Mem_Init
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/badinit2
+
+
+test badinit2 PASSED
+ (bad arguments to Mem_Init)
+
+
+**********************************************************************
+
+Test doubleinit
+call init twice
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/doubleinit
+
+
+test doubleinit PASSED
+ (call init twice)
+
+
+**********************************************************************
+
+Test bestfit
+use first free space for allocation
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/bestfit
+Freeing: 0x7fff0e1b4e98 
+Cur block: 0x7f26d2452000 , Prev block: (nil), Next block: (nil), Size: 1288
+
+
+test bestfit PASSED
+ (use first free space for allocation)
+
+
+**********************************************************************
+
+Test bestfit2
+use first free space for allocation
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/bestfit2
+Freeing: 0x7fff097aaf78 
+Cur block: 0x7f29b46a7000 , Prev block: (nil), Next block: (nil), Size: 2072
+Freeing: 0x7fff097aaf78 
+Cur block: 0x7f29b46a7000 , Prev block: (nil), Next block: 0x7f29b46a7c18, Size: 72
+Cur block: 0x7f29b46a7c18 , Prev block: 0x7f29b46a7000, Next block: (nil), Size: 320
+
+
+test bestfit2 PASSED
+ (use first free space for allocation)
+
+
+**********************************************************************
+
+Test coalesce
+check for coalesce free space
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce
+Freeing: 0x7fffd8ccfc18 
+Cur block: 0x7fa4fbc7b000 , Prev block: (nil), Next block: (nil), Size: 776
+Freeing: 0x7fffd8ccfc18 
+Cur block: 0x7fa4fbc7b000 , Prev block: (nil), Next block: 0x7fa4fbc7b990, Size: 776
+Cur block: 0x7fa4fbc7b990 , Prev block: 0x7fa4fbc7b000, Next block: (nil), Size: 800
+
+
+test coalesce PASSED
+ (check for coalesce free space)
+
+
+**********************************************************************
+
+Test coalesce2
+check for coalesce free space
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce2
+Freeing: 0x7fff3a711748 
+Cur block: 0x7f006452b000 , Prev block: (nil), Next block: (nil), Size: 776
+Freeing: 0x7fff3a711748 
+Cur block: 0x7f006452b000 , Prev block: (nil), Next block: 0x7f006452b658, Size: 776
+Cur block: 0x7f006452b658 , Prev block: 0x7f006452b000, Next block: (nil), Size: 800
+
+
+test coalesce2 PASSED
+ (check for coalesce free space)
+
+
+**********************************************************************
+
+Test coalesce3
+check for coalesce free space
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce3
+Freeing: 0x7fff7c970ed8 
+Cur block: 0x7fc56311a000 , Prev block: (nil), Next block: (nil), Size: 776
+Freeing: 0x7fff7c970ed8 
+Cur block: 0x7fc56311a000 , Prev block: (nil), Next block: 0x7fc56311a990, Size: 776
+Cur block: 0x7fc56311a990 , Prev block: 0x7fc56311a000, Next block: (nil), Size: 800
+Freeing: 0x7fff7c970ed8 
+Cur block: 0x7fc56311a000 , Prev block: (nil), Next block: 0x7fc56311a990, Size: 1600
+Cur block: 0x7fc56311a990 , Prev block: 0x7fc56311a320, Next block: (nil), Size: 800
+
+
+test coalesce3 PASSED
+ (check for coalesce free space)
+
+
+**********************************************************************
+
+Test coalesce4
+check for coalesce free space
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce4
+Freeing: 0x7fff544216b8 
+Cur block: 0x7fdc4ea75000 , Prev block: (nil), Next block: (nil), Size: 776
+Freeing: 0x7fff544216b8 
+Cur block: 0x7fdc4ea75000 , Prev block: (nil), Next block: 0x7fdc4ea75658, Size: 776
+Cur block: 0x7fdc4ea75658 , Prev block: 0x7fdc4ea75000, Next block: (nil), Size: 800
+
+
+test coalesce4 PASSED
+ (check for coalesce free space)
+
+
+**********************************************************************
+
+Test coalesce5
+check for coalesce free space (first chunk)
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce5
+Freeing: 0x7fff6225ef68 
+Cur block: 0x7f0ab2973000 , Prev block: (nil), Next block: (nil), Size: 776
+Freeing: 0x7fff6225ef68 
+Cur block: 0x7f0ab2973000 , Prev block: (nil), Next block: 0x7f0ab2973cc8, Size: 776
+Cur block: 0x7f0ab2973cc8 , Prev block: 0x7f0ab2973000, Next block: (nil), Size: 800
+
+
+test coalesce5 PASSED
+ (check for coalesce free space (first chunk))
+
+
+**********************************************************************
+
+Test coalesce6
+check for coalesce free space (last chunk)
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce6
+Freeing: 0x7fffa1c5c3b8 
+Cur block: 0x7fb7c4fa2000 , Prev block: (nil), Next block: (nil), Size: 456
+
+
+test coalesce6 PASSED
+ (check for coalesce free space (last chunk))
+
+
+**********************************************************************
+
+Test coalesce7
+check for coalesce free space (two next chunks)
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce7
+Freeing: 0x7fffb35e0048 
+Cur block: 0x7fadb8b5b000 , Prev block: (nil), Next block: (nil), Size: 88
+Freeing: 0x7fffb35e0048 
+Cur block: 0x7fadb8b5b000 , Prev block: (nil), Next block: 0x7fadb8b5b308, Size: 88
+Cur block: 0x7fadb8b5b308 , Prev block: 0x7fadb8b5b000, Next block: (nil), Size: 640
+Freeing: 0x7fffb35e0048 
+Cur block: 0x7fadb8b5b000 , Prev block: (nil), Next block: 0x7fadb8b5b308, Size: 88
+Cur block: 0x7fadb8b5b308 , Prev block: 0x7fadb8b5b000, Next block: 0x7fadb8b5b5a0, Size: 640
+Cur block: 0x7fadb8b5b5a0 , Prev block: 0x7fadb8b5b308, Next block: (nil), Size: 640
+
+
+test coalesce7 PASSED
+ (check for coalesce free space (two next chunks))
+
+
+**********************************************************************
+
+Test coalesce8
+check for coalesce free space (2 next and 2 prev chunks)
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/tests/coalesce8
+Freeing: 0x7fff07dac768 
+Cur block: 0x7ff8851fd000 , Prev block: (nil), Next block: (nil), Size: 88
+Freeing: 0x7fff07dac768 
+Cur block: 0x7ff8851fd000 , Prev block: (nil), Next block: 0x7ff8851fdad0, Size: 88
+Cur block: 0x7ff8851fdad0 , Prev block: 0x7ff8851fd000, Next block: (nil), Size: 640
+Freeing: 0x7fff07dac768 
+Cur block: 0x7ff8851fd000 , Prev block: (nil), Next block: 0x7ff8851fdad0, Size: 88
+Cur block: 0x7ff8851fdad0 , Prev block: 0x7ff8851fd000, Next block: 0x7ff8851fdd68, Size: 640
+Cur block: 0x7ff8851fdd68 , Prev block: 0x7ff8851fdad0, Next block: (nil), Size: 640
+Freeing: 0x7fff07dac768 
+Cur block: 0x7ff8851fd000 , Prev block: (nil), Next block: 0x7ff8851fd308, Size: 88
+Cur block: 0x7ff8851fd308 , Prev block: 0x7ff8851fd000, Next block: 0x7ff8851fdad0, Size: 640
+Cur block: 0x7ff8851fdad0 , Prev block: 0x7ff8851fd308, Next block: 0x7ff8851fdd68, Size: 640
+Cur block: 0x7ff8851fdd68 , Prev block: 0x7ff8851fdad0, Next block: (nil), Size: 640
+Freeing: 0x7fff07dac768 
+Cur block: 0x7ff8851fd000 , Prev block: (nil), Next block: 0x7ff8851fd308, Size: 88
+Cur block: 0x7ff8851fd308 , Prev block: 0x7ff8851fd000, Next block: 0x7ff8851fd5a0, Size: 640
+Cur block: 0x7ff8851fd5a0 , Prev block: 0x7ff8851fd308, Next block: 0x7ff8851fdad0, Size: 640
+Cur block: 0x7ff8851fdad0 , Prev block: 0x7ff8851fd5a0, Next block: 0x7ff8851fdd68, Size: 640
+Cur block: 0x7ff8851fdd68 , Prev block: 0x7ff8851fdad0, Next block: (nil), Size: 640
+
+
+test coalesce8 PASSED
+ (check for coalesce free space (2 next and 2 prev chunks))
+
+
+**********************************************************************
+
+Test random
+psuedo-random sequence of allocs and frees
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/random 0 10 0
+Freeing: 0x7fff60511a08 
+Cur block: 0x7fdeece0f000 , Prev block: (nil), Next block: (nil), Size: 323272
+Freeing: 0x7fff60511a08 
+Cur block: 0x7fdeece0f000 , Prev block: (nil), Next block: (nil), Size: 322880
+time: 0.00220108032227
+
+
+test random PASSED
+ (psuedo-random sequence of allocs and frees)
+
+
+**********************************************************************
+
+Test random2
+psuedo-random sequence of allocs and frees
+
+**********************************************************************
+/u/c/s/cs537-2/public/test_scripts/p3/random 0 1000 1
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 323424
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322968
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322968
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322504
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322256
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322048
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322048
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 322048
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321832
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321776
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321512
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321336
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321336
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321200
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 321112
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 320440
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 320248
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 320248
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 320112
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319776
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319736
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319736
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319464
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319176
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319176
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 319024
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 318088
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 317856
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 317552
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 317552
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 317336
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 317184
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 316592
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 316232
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 316232
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff9aa0, Size: 316136
+Cur block: 0x7fab87ff9aa0 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff9aa0, Size: 315992
+Cur block: 0x7fab87ff9aa0 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff9aa0, Size: 315992
+Cur block: 0x7fab87ff9aa0 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff9aa0, Size: 315600
+Cur block: 0x7fab87ff9aa0 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff9aa0, Size: 315600
+Cur block: 0x7fab87ff9aa0 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 315336
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 315336
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 314768
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 314768
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 314648
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 314608
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 314040
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffac50, Size: 314040
+Cur block: 0x7fab87ffac50 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffac50, Size: 313832
+Cur block: 0x7fab87ffac50 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffac50, Size: 313696
+Cur block: 0x7fab87ffac50 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 24
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 313632
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 313632
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 313632
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffae78, Size: 313312
+Cur block: 0x7fab87ffae78 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 8
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffae78, Size: 312912
+Cur block: 0x7fab87ffae78 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 8
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ffae78, Size: 312912
+Cur block: 0x7fab87ffae78 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 8
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 312768
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 312768
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311976
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311848
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311496
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311496
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311496
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 311496
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 310984
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: (nil), Size: 310360
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 310216
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 310112
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 310112
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 309960
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 309608
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ffa110, Size: 0
+Cur block: 0x7fab87ffa110 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 16
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8a00, Size: 309512
+Cur block: 0x7fab87ff8a00 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 40
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8a00, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 309280
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff94c8, Size: 309120
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87fac000, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8530, Size: 308968
+Cur block: 0x7fab87ff8530 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 72
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8530, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8530, Size: 308864
+Cur block: 0x7fab87ff8530 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 72
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8530, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 308448
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 307944
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 307776
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 307776
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 307496
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffaa18, Size: 0
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 96
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 307496
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffaa18, Size: 0
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 96
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7838, Size: 307496
+Cur block: 0x7fab87ff7838 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff7c70, Size: 120
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87ff7838, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffaa18, Size: 0
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 32
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 307496
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffaa18, Size: 0
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 32
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 307312
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffa058, Size: 0
+Cur block: 0x7fab87ffa058 , Prev block: 0x7fab87ff94c8, Next block: 0x7fab87ffaa18, Size: 16
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ffa058, Next block: (nil), Size: 32
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 307248
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffa058, Size: 0
+Cur block: 0x7fab87ffa058 , Prev block: 0x7fab87ff94c8, Next block: 0x7fab87ffaa18, Size: 16
+Cur block: 0x7fab87ffaa18 , Prev block: 0x7fab87ffa058, Next block: (nil), Size: 32
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 307080
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ffa058, Size: 0
+Cur block: 0x7fab87ffa058 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 16
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 306984
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 306360
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 306360
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 306256
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff7c70, Size: 306208
+Cur block: 0x7fab87ff7c70 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 8
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff7c70, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 306072
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 305728
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff85d8, Size: 305656
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff80e0, Size: 305568
+Cur block: 0x7fab87ff80e0 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 40
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff80e0, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff80e0, Size: 305568
+Cur block: 0x7fab87ff80e0 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 40
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff80e0, Next block: 0x7fab87ff9360, Size: 0
+Cur block: 0x7fab87ff9360 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 32
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff9360, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff80e0, Size: 305568
+Cur block: 0x7fab87ff80e0 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff8360, Size: 40
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87ff80e0, Next block: 0x7fab87ff85d8, Size: 72
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff9360, Size: 0
+Cur block: 0x7fab87ff9360 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 32
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff9360, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff80e0, Size: 305568
+Cur block: 0x7fab87ff80e0 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff8360, Size: 40
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87ff80e0, Next block: 0x7fab87ff85d8, Size: 72
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff9360, Size: 0
+Cur block: 0x7fab87ff9360 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 32
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff9360, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 304760
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 304336
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff94c8, Size: 0
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff85d8, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 304336
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 304336
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 304336
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303896
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303896
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303896
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: 0x7fab87ffa6c8, Size: 0
+Cur block: 0x7fab87ffa6c8 , Prev block: 0x7fab87ff94c8, Next block: (nil), Size: 32
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303800
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303648
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prev block: 0x7fab87ff8360, Next block: 0x7fab87ff8700, Size: 0
+Cur block: 0x7fab87ff8700 , Prev block: 0x7fab87ff85d8, Next block: 0x7fab87ff94c8, Size: 8
+Cur block: 0x7fab87ff94c8 , Prev block: 0x7fab87ff8700, Next block: (nil), Size: 0
+Freeing: 0x7fff21642c68 
+Cur block: 0x7fab87fac000 , Prev block: (nil), Next block: 0x7fab87ff8360, Size: 303496
+Cur block: 0x7fab87ff8360 , Prev block: 0x7fab87fac000, Next block: 0x7fab87ff85d8, Size: 0
+Cur block: 0x7fab87ff85d8 , Prtest random2 FAILED
+
+
+test random2 FAILED
+ (psuedo-random sequence of allocs and frees)
+ User interrupted test
+
+**********************************************************************
+Summary:
+test build FAILED
+ (build project using make)
+ make clean failed (error 2)
+ file 'libmem.so' exists after make clean, removing
+ file 'mem.o' exists after make clean, removing
+
+test init PASSED
+ (call Mem_Init with size = 1 page)
+
+test init2 PASSED
+ (init that should be rounded up to 1 page)
+
+test alloc PASSED
+ (a simple 8 byte allocation)
+
+test writeable PASSED
+ (write to a chunk from Mem_Alloc)
+
+test free PASSED
+ (a simple allocation followed by a free)
+
+test align PASSED
+ (check first pointer returned is 8-byte aligned)
+
+test alloc2 PASSED
+ (a few aligned allocations)
+
+test alloc3 PASSED
+ (many odd sized allocations)
+
+test free2 PASSED
+ (a few aligned allocations and frees)
+
+test free3 PASSED
+ (many odd sized allocations and interspersed frees)
+
+test align2 PASSED
+ (a few allocations checked for alignment)
+
+test align3 PASSED
+ (many odd sized allocations checked for alignment)
+
+test nospace PASSED
+ (second allocation is too big to fit)
+
+test badinit PASSED
+ (bad arguments to Mem_Init)
+
+test badinit2 PASSED
+ (bad arguments to Mem_Init)
+
+test doubleinit PASSED
+ (call init twice)
+
+test bestfit PASSED
+ (use first free space for allocation)
+
+test bestfit2 PASSED
+ (use first free space for allocation)
+
+test coalesce PASSED
+ (check for coalesce free space)
+
+test coalesce2 PASSED
+ (check for coalesce free space)
+
+test coalesce3 PASSED
+ (check for coalesce free space)
+
+test coalesce4 PASSED
+ (check for coalesce free space)
+
+test coalesce5 PASSED
+ (check for coalesce free space (first chunk))
+
+test coalesce6 PASSED
+ (check for coalesce free space (last chunk))
+
+test coalesce7 PASSED
+ (check for coalesce free space (two next chunks))
+
+test coalesce8 PASSED
+ (check for coalesce free space (2 next and 2 prev chunks))
+
+test random PASSED
+ (psuedo-random sequence of allocs and frees)
+
+test random2 FAILED
+ (psuedo-random sequence of allocs and frees)
+ User interrupted test
+
+Passed 27 of 29 tests.
+Skipped 4 tests.
+Overall 27 of 33
