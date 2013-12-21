@@ -5,9 +5,16 @@
 #include <assert.h>
 #include <ctype.h>
 #include <string.h>
-#include "sort.h"
 #include <sys/types.h>
 #include <sys/stat.h>
+
+#define NUMRECS (24)
+
+typedef struct __rec_t{
+	unsigned int key;
+	unsigned int record[NUMRECS];
+} rec_t;
+
 
 int
 compare (const void * a, const void * b){
@@ -33,7 +40,8 @@ usage(char *prog)
 int
 main (int argc, char* argv[]){
 	// program assumes a 4-byte key
-    	assert(sizeof(rec_t) == 4096);
+	//printf("size: %d\n", sizeof(rec_t));
+    	//assert(sizeof(rec_t) == 4096);
 	
 	// arguments
     	char *inFile = "";	
